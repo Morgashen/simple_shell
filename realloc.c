@@ -46,27 +46,22 @@ void ffree(char **pp)
  */
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
-        char *p;
+	char *p;
 
-        if (!ptr)
-                return (malloc(new_size));
+	if (!ptr)
+		return (malloc(new_size));
+	if (!new_size)
+		return (free(ptr), NULL);
+	if (new_size == old_size)
+		return (ptr);
 
-        if (!new_size)
-        {
-                free(ptr);
-                return (NULL);
-        }
+	p = malloc(new_size);
+	if (!p)
+		return (NULL);
 
-        if (new_size == old_size)
-                return (ptr);
-
-        p = malloc(new_size);
-        if (!p)
-                return (NULL);
-
-        old_size = old_size < new_size ? old_size : new_size;
-        while (old_size--)
-                p[old_size] = ((char *)ptr)[old_size];
-        free(ptr);
-        return (p);
+	old_size = old_size < new_size ? old_size : new_size;
+	while (old_size--)
+		p[old_size] = ((char *)ptr)[old_size];
+	free(ptr);
+	return (p);
 }

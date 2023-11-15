@@ -12,6 +12,7 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <error.h>
+#include <limits.h>
 
 /* for read/write buffers */
 #define READ_BUF_SIZE 1024
@@ -34,6 +35,8 @@
 
 #define HIST_FILE       ".simple_shell_history"
 #define HIST_MAX        4096
+#define MAX_MEMSET_SIZE UINT_MAX 
+#define MAX_SIZE UINT_MAX
 
 extern char **environ;
 
@@ -183,7 +186,7 @@ int _myalias(info_t *info);
 int _myhistory(info_t *info);
 
 /*toem_getLine.c */
-ssize_t input_buf(info_t *info, char **buf, size_t *len);
+ssize_t input_buf(info_t *info, char **buf);
 ssize_t get_input(info_t *info);
 ssize_t read_buf(info_t *info, char *buf, size_t *i);
 int _getline(info_t *info, char **ptr, size_t *length);
