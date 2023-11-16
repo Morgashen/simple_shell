@@ -9,14 +9,14 @@
 */
 int _strlen(const char *s)
 {
-        int i = 0;
+int i = 0;
 
-        if (!s)
-                return (0);
+if (!s)
+return (0);
 
-        while (*s++)
-                i++;
-        return (i);
+while (*s++)
+i++;
+return (i);
 }
 
 /**
@@ -25,21 +25,22 @@ int _strlen(const char *s)
 * @s1: The first string.
 * @s2: The second string.
 *
-* Return: A negative value if s1 < s2, a positive value if s1 > s2, and zero if s1 == s2.
+* Return: A negative value if s1 < s2,
+* a positive value if s1 > s2, and zero if s1 == s2.
 */
 int _strncmp(const char *s1, const char *s2)
 {
-        while (*s1 && *s2)
-        {
-                if (*s1 != *s2)
-                        return (*s1 - *s2);
-                s1++;
-                s2++;
-        }
-        if (*s1 == *s2)
-                return (0);
-        else
-                return (*s1 < *s2 ? -1 : 1);
+while (*s1 && *s2)
+{
+if (*s1 != *s2)
+return (*s1 - *s2);
+s1++;
+s2++;
+}
+if (*s1 == *s2)
+return (0);
+else
+return (*s1 < *s2 ? -1 : 1);
 }
 
 /**
@@ -48,17 +49,18 @@ int _strncmp(const char *s1, const char *s2)
 * @haystack: The string to search.
 * @needle: The substring to find.
 *
-* Return: The address of the next character in 'haystack' after 'needle' if found, or NULL if not found.
+* Return: The address of the next character in 'haystack' after 'needle'
+* if found, or NULL if not found.
 */
 char *starts_with(const char *haystack, const char *needle)
 {
-        size_t needle_len = _strlen(needle);
+size_t needle_len = _strlen(needle);
 
-        if ((int)needle_len > _strlen(haystack))
-                return (NULL);
+if ((int)needle_len > _strlen(haystack))
+return (NULL);
 
-        return (_strncmp(haystack, needle) == 0 ?
-                        (char *)haystack + needle_len : NULL);
+return (_strncmp(haystack, needle) == 0 ?
+(char *)haystack + needle_len : NULL);
 }
 
 /**
@@ -71,14 +73,14 @@ char *starts_with(const char *haystack, const char *needle)
 */
 char *_strcat(char *dest, const char *src)
 {
-        char *ret = dest;
+char *ret = dest;
 
-        while (*dest)
-                dest++;
-        while (*src)
-                *dest++ = *src++;
-        *dest = '\0';
-        return (ret);
+while (*dest)
+dest++;
+while (*src)
+*dest++ = *src++;
+*dest = '\0';
+return (ret);
 }
 
 
@@ -92,17 +94,16 @@ char *_strcat(char *dest, const char *src)
 */
 char *_strcpy(char *dest, char *src)
 {
-        int i = 0;
-
-        if (dest == src || src == NULL)
-                return (dest);
-        while (src[i])
-        {
-                dest[i] = src[i];
-                i++;
-        }
-        dest[i] = '\0';
-        return (dest);
+int i = 0;
+if (dest == src || src == NULL)
+return (dest);
+while (src[i])
+{
+dest[i] = src[i];
+i++;
+}
+dest[i] = '\0';
+return (dest);
 }
 
 /**
@@ -114,19 +115,19 @@ char *_strcpy(char *dest, char *src)
 */
 char *_strdup(const char *str)
 {
-        int length = 0;
-        char *ret;
+int length = 0;
+char *ret;
 
-        if (str == NULL)
-                return (NULL);
-        while (*str++)
-                length++;
-        ret = malloc(sizeof(char) * (length + 1));
-        if (!ret)
-                return (NULL);
-        for (length++; length--;)
-                ret[length] = *--str;
-        return (ret);
+if (str == NULL)
+return (NULL);
+while (*str++)
+length++;
+ret = malloc(sizeof(char) * (length + 1));
+if (!ret)
+return (NULL);
+for (length++; length--;)
+ret[length] = *--str;
+return (ret);
 }
 
 /**
@@ -137,15 +138,15 @@ char *_strdup(const char *str)
 */
 void _puts(char *str)
 {
-        int i = 0;
+int i = 0;
 
-        if (!str)
-                return;
-        while (str[i] != '\0')
-        {
-                _putchar(str[i]);
-                i++;
-        }
+if (!str)
+return;
+while (str[i] != '\0')
+{
+_putchar(str[i]);
+i++;
+}
 }
 
 /**
@@ -153,19 +154,19 @@ void _puts(char *str)
 *
 * @c: The character to print.
 *
-* Return: On success, it returns 1. On error, -1 is returned, and errno is set appropriately.
+* Return: On success, it returns 1. On error, -1 is returned,
+* and errno is set appropriately.
 */
 int _putchar(char c)
 {
-        static int i;
-        static char buf[WRITE_BUF_SIZE];
-
-        if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
-        {
-                write(1, buf, i);
-                i = 0;
-        }
-        if (c != BUF_FLUSH)
-                buf[i++] = c;
-        return (1);
+static int i;
+static char buf[WRITE_BUF_SIZE]
+if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
+{
+write(1, buf, i);
+i = 0;
+}
+if (c != BUF_FLUSH)
+buf[i++] = c;
+return (1);
 }
